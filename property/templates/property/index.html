@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}Property Advisors | Home{% endblock title %}
+{% load static %}
+{%load humanize%}
+
+{% block content %}
+  <!-- Start slider  -->
+  <section id="aa-slider">
+    <div class="aa-slider-area">
+      <!-- Top slider -->
+      <div class="aa-top-slider">
+        <!-- Top slider single slide -->
+        <div class="aa-top-slider-single">
+          <img src="/static/img/durres.jpg" alt="img">
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- End slider  -->
+
+  <!-- Advance Search -->
+  <section id="aa-advance-search">
+    <div class="container">
+      <div class="aa-advance-search-area">
+        <form method="GET" action="{% url 'property:Search'%}">
+         <div class="aa-advance-search-top">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="aa-single-advance-search">
+                {{form.location}}
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="aa-single-advance-search">
+                    {{form.category}}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-2">
+                 <div class="aa-single-advance-search">
+                    {{form.look_for}}
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="aa-single-advance-search">
+                  <input class="aa-search-btn" type="submit" value="Search">
+                </div>
+              </div>
+            </div>
+          </div>
+         </form>
+      </div>
+    </div>
+  </section>
+  <!-- / Advance Search -->
+
+  <!-- About us -->
+  <section id="aa-about-us">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-about-us-area">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="aa-about-us-left">
+                  <img src="{% static 'img/about-us.png' %}" alt="image">
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="aa-about-us-right">
+                  <div class="aa-title">
+                    <h2>About Us</h2>
+                    <span></span>
+                  </div>
+                  <p>Property Advisors Real Estate LLC is the franchisee of the world's largest real estate sales organization that provides comprehensive training, management, administrative support and marketing for the PROPERTY ADVISORS System. The system includes more than 14.500 offices Franchises that operate and are independently owned by over 145,000 sales associates, in 86 countries and territories around the world. Property Advisors Real Estate LLC is part of the Realogy Corporation, the global real estate corporation and relocation services. Property Advisors Albania operates in the country from the year 2008 and it currently has 38 offices in six cities - Tirana, Durrës, Shkodër, Vlora, Saranda & Korça.
+
+© 2021 Property Advisors Real Estate LLC. PROPERTY ADVISORS is a registered trademark of PROPERTY ADVISORS LLC Real Estate. A company offering Equal Housing Opportunities. Any PROPERTY ADVISORS office, operates and is in Independent Ownership.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- / About us -->
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load template_tags %}
+
+{% block title %}Property Advisors | Properties{% endblock title %}
+{% block content %}
+  <!-- Start Proerty header  -->
+  <section id="aa-property-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-property-header-inner">
+            <h2>Properties Page</h2>
+            <ol class="breadcrumb">
+            <li><a href="">HOME</a></li>            
+            <li class="active">PROPERTIES</li>
+          </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> 
+  <!-- End Proerty header  -->
+
+  <!-- Start Properties  -->
+  <section id="aa-properties">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="aa-properties-content">
+            <!-- start properties content head -->
+            <div class="aa-properties-content-head">              
+              <div class="aa-properties-content-head-left">
+                <form class="aa-sort-form" method="GET">
+                  <label for="">Sort by</label>
+                  {{form.sort_by}}
+                </form>
+                <form class="aa-show-form" method="GET">
+                  <label for="">Show</label>
+                  {{form.paginate_by}}
+                </form>
+              </div>
+              <div class="aa-properties-content-head-right">
+                <a id="aa-grid-properties" href="#"><span class="fa fa-th"></span></a>
+                <a id="aa-list-properties" href="#"><span class="fa fa-list"></span></a>
+              </div>            
+            </div>
+            <!-- Start properties content body -->
+            <div class="aa-properties-content-body">
+              <ul class="aa-properties-nav">
+                {% for property in properties %}
+                  <li>
+                    <article class="aa-properties-item">
+                      <a class="aa-properties-item-img" href="{{property.get_absolute_url}}">
+                        <img alt="img" src="{{property.MainPhoto.url}}">
+                      </a>
+                      {% if property.get_property_status_display == "For Sale" %}
+                        <div class="aa-tag for-sale">
+                          {{property.get_property_status_display}}
+                        </div>
+                      {% endif %}
+                      {% if property.get_property_status_display == "For Rent"%}
+                        <div class="aa-tag for-rent">
+                          {{property.get_property_status_display}}
+                        </div>
+                      {% endif %}
+                      <div class="aa-properties-item-content">
+                        <div class="aa-properties-info">
+                          <span>{{property.bedrooms}} Beds</span>
+                          <span>{{property.bathrooms}} Baths</span>
+                          <span>{{property.sqm}} SQ M</span>
+                          <span>City: {{property.city}}</span>
+                        </div>
+                        <div class="aa-properties-about">
+                          <h3><a href="{{property.get_absolute_url}}">{{property.title}}</a></h3>
+                          <p>{{property.description|truncatewords:20}}</p>                      
+                        </div>
+                        <div class="aa-properties-detial">
+                          <span class="aa-price">
+                            {{property.price|intcomma}} Euro
+                          </span>
+                          <a class="aa-secondary-btn" href="{{property.get_absolute_url}}">View Details</a>
+                        </div>
+                      </div>
+                    </article>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <!-- Start properties content bottom -->
+            <div class="aa-properties-content-bottom">
+              <nav>
+                {%include 'property/pagination.html'%}
+              </nav>
+            </div>
+          </div>
+        </div>
+        <!-- Start properties sidebar -->
+        {% include 'property/sidebar.html' %}
+        <!-- End properties sidebar -->
+      </div>
+    </div>
+  </section>
+  <!-- / Properties  -->
+{% endblock content%}

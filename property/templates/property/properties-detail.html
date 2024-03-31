@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+{%load humanize%}
+
+{% block title %}Property Advisors | Details{% endblock %}
+{% block content %}
+  <!-- Start Proerty header  -->
+
+  <section id="aa-property-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-property-header-inner">
+            <h2>Properties Details</h2>
+            <ol class="breadcrumb">
+            <li><a href="#">HOME</a></li>            
+            <li class="active">{{property.title}}</li>
+          </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> 
+  <!-- End Proerty header  -->
+
+  <!-- Start Properties  -->
+  <section id="aa-properties">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="aa-properties-content">            
+            <!-- Start properties content body -->
+            <div class="aa-properties-details">
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                  {{message}}
+                </div>
+              {% endfor %}
+            {%endif%}
+            {% if property.author == user%}
+              <div>
+                <a href="{% url 'users:update-property' property.id %}"><button type="button" class="btn btn-secondary">Update</button></a>
+                <a href="{% url 'users:delete-property' property.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+              </div>
+              <hr>
+            {%endif%}
+<div class="aa-properties-details-img">
+              <img src="{{property.MainPhoto.url}}" alt="img">
+              {% if property.photo_1 %}
+                <img src="{{property.photo_1.url}}" alt="img">
+              {% endif %}
+              {% if property.photo_2 %}
+                <img src="{{property.photo_2.url}}" alt="img">
+              {% endif %}
+              {% if property.photo_3 %}
+                <img src="{{property.photo_3.url}}" alt="img">
+              {% endif %}
+              {% if property.photo_4 %}
+                <img src="{{property.photo_4.url}}" alt="img">
+              {% endif %}
+              {% if property.photo_5 %}
+                <img src="{{property.photo_5.url}}" alt="img">
+              {% endif %}
+              {% if property.photo_6 %}
+                <img src="{{property.photo_6.url}}" alt="img">
+              {% endif %}
+             </div>
+             <div class="aa-properties-info">
+               <h2>{{property.title}}</h2>
+               <h5>Posted at: {{property.pub_date|date:"Y b d"}}</h5>
+               <h5>Views: {{property.views}}</h5>
+               <span class="aa-price">Price: {{property.price|intcomma}} Euro</span>
+               <h4>Address: {{property.address}}, {{property.city}}, {{property.state}}</h4>
+               <p>{{property.description}}</p>
+                 <hr>
+                 <h4>Propery Features</h4>
+               <ul>
+                 <li>Area: {{property.sqm}} SQ M</li>
+                 <li>{{property.bedrooms}} Bedroom</li>
+                 <li>{{property.bathrooms}} Baths</li>
+                   <hr>
+               </ul>
+
+             </div>
+             </div>
+             <div class="aa-contact-top-left">
+                <iframe width="100%" height="450" allowfullscreen="" style="border:0" src="{{ property.scr_map }}"></iframe>
+                 <hr>
+                 <h2>Contact</h2>
+                <ul class="contact-info-list">
+                  <li> <i class="fa fa-phone"></i> +355 694444123</li>
+                  <li> <i class="fa fa-envelope-o"></i> info@propertyadvisors.com</li>
+                  <li> <i class="fa fa-map-marker"></i> Studenti Street, Unit 7, Tirane</li>
+                </ul>
+             </div>
+          </div>
+        </div>
+        </div>
+    </div>
+  </section>
+  <!-- / Properties  -->
+{% endblock %}
