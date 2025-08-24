@@ -6,3 +6,7 @@ django-autoslug==1.9.9
 django-ckeditor==6.7.0
 Pillow==10.2.0
 djangorestframework==3.14.0
+gunicorn
+whitenoise
+dj-database-url
+psycopg2-binary
