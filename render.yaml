@@ -2,7 +2,7 @@ services:
   - type: web
     name: real-estate-ledia
     env: python
-    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt && python manage.py collectstatic --noinput
     startCommand: gunicorn property_advisors.wsgi:application
     autoDeploy: true
     postDeployCommand: python manage.py migrate
